@@ -1,7 +1,6 @@
 <h2>RU:</h2>
-![1](https://cloud.githubusercontent.com/assets/9499881/8044777/01414cc8-0e40-11e5-8288-0b42f5a49e0a.png)
 Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений.
-
+![1](https://cloud.githubusercontent.com/assets/9499881/8044777/01414cc8-0e40-11e5-8288-0b42f5a49e0a.png)<br>
 **Параметры запуска:**
 1) Заголовок уведомления (полужирный шрифт);
 2) Первая строка;
@@ -13,14 +12,14 @@
 **Пример**
 "C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "The new series of the show" "Bates Motel" "Icons\icon30x30.png" "Icons\icon90x90.png" 2
 
-**Уведомление без иконок**
-![2](https://cloud.githubusercontent.com/assets/9499881/8045036/ab2760c8-0e41-11e5-8cee-f70560396b72.png)
-**Уведомление только с левой иконкой**
-![3](https://cloud.githubusercontent.com/assets/9499881/8045046/c59390da-0e41-11e5-9b6b-348e84d29430.png)
-**Уведомление только с правой иконкой**
-![4](https://cloud.githubusercontent.com/assets/9499881/8044982/61133a7a-0e41-11e5-94be-b1d80a1f2c52.png)
-**Темы**
-![5](https://cloud.githubusercontent.com/assets/9499881/8045067/e21f3466-0e41-11e5-964a-eae0b4ac74e3.png)
+**Уведомление без иконок**<br>
+![2](https://cloud.githubusercontent.com/assets/9499881/8045036/ab2760c8-0e41-11e5-8cee-f70560396b72.png)<br>
+**Уведомление только с левой иконкой**<br>
+![3](https://cloud.githubusercontent.com/assets/9499881/8045046/c59390da-0e41-11e5-9b6b-348e84d29430.png)<br>
+**Уведомление только с правой иконкой**<br>
+![4](https://cloud.githubusercontent.com/assets/9499881/8044982/61133a7a-0e41-11e5-94be-b1d80a1f2c52.png)<br>
+**Темы**<br>
+![5](https://cloud.githubusercontent.com/assets/9499881/8045067/e21f3466-0e41-11e5-964a-eae0b4ac74e3.png)<br>
 
 **[Скачать последнюю версию](https://github.com/r57zone/notifications/releases)**
 
