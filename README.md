@@ -1,5 +1,5 @@
 <h2>RU:</h2>
-Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений.
+Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений.<br>
 ![1](https://cloud.githubusercontent.com/assets/9499881/8044777/01414cc8-0e40-11e5-8288-0b42f5a49e0a.png)<br>
 **Параметры запуска:**
 1) Заголовок уведомления (полужирный шрифт);
@@ -9,7 +9,7 @@
 5) Название файлы иконки слева (90 на 900 пикселей), закинуть в папку с приложением файл формата png, jpg, bmp или gif. Если не нужна, то написать "null";
 6) Цвет темы в цифрах, от 0 до 6; Задавать не обязательно, по умолчанию будет тема 0. Светло-синий - 0, Темно-синий - 1, Сине-зеленый - 2, Зеленый - 3, Фиолетовый - 4, Темно-розовый - 5, Черный - 6; 
 
-**Пример**
+**Пример**<br>
 "C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "The new series of the show" "Bates Motel" "Icons\icon30x30.png" "Icons\icon90x90.png" 2
 
 **Уведомление без иконок**<br>
