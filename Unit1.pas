@@ -47,6 +47,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
 WND:HWND; Path:string;
 begin
+Application.Title:='Notification Show';
 WND:=FindWindow(nil, 'Notification Show');
 if WND<>0 then while WND<>0 do begin sleep(100); WND:=FindWindow(nil, 'Notification Show'); end;
 Caption:='Notification Show';
