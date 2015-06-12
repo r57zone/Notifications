@@ -48,5 +48,5 @@ Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notifica
 
 **[Download latest version](https://github.com/r57zone/notifications/releases)**
 
-**Feedback**: r57zone[dog]gmail.com 
+**Feedback**: r57zone[at]gmail.com 
 
