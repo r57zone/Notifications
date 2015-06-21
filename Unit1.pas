@@ -53,25 +53,29 @@ Caption:='Notification Show';
 Form1.Left:=Screen.Width-Form1.Width;
 Form1.Top:=Screen.Height-Form1.Height-57;
 ThemeColor:=0;
+
+if (ParamStr(1)<>'') and (ParamStr(1)<>'null') then
 Label1.Caption:=ParamStr(1);
+if (ParamStr(2)<>'') and (ParamStr(2)<>'null') then
 Label2.Caption:=ParamStr(2);
+if (ParamStr(3)<>'') and (ParamStr(3)<>'null') then
 Label3.Caption:=ParamStr(3);
 
 if (ParamStr(4)<>'') and (ParamStr(4)<>'null') then
 if FileExists(ExtractFilePath(ParamStr(0))+'\'+ParamStr(4)) then
 if (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.png')
-or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.gif') then
-Image1.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+'\'+ParamStr(4));
-
-if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
-if FileExists(ExtractFilePath(ParamStr(0))+'\'+ParamStr(5)) then
-if (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.png')
-or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.gif') then begin
-Image2.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+'\'+ParamStr(5));
+or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.gif') then begin
+Image2.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+'\'+ParamStr(4));
 Label1.Left:=100;
 Label2.Left:=100;
 Label3.Left:=100;
 end;
+
+if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
+if FileExists(ExtractFilePath(ParamStr(0))+'\'+ParamStr(5)) then
+if (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.png')
+or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.gif') then
+Image1.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+'\'+ParamStr(5));
 
 if ParamStr(6)<>'' then ThemeColor:=StrToInt(ParamStr(6));
 SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
