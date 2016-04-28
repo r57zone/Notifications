@@ -1,5 +1,6 @@
 <h2>RU:</h2>
-Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений. Совместимо с [альтернативным центром уведомлений](https://github.com/r57zone/Notification-center).<br>
+Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений.<br>
+Совместимо с [альтернативным центром уведомлений](https://github.com/r57zone/Notification-center).<br>
 ![1](https://cloud.githubusercontent.com/assets/9499881/8044777/01414cc8-0e40-11e5-8288-0b42f5a49e0a.png)<br>
 **Параметры запуска:**<br>
 1) Заголовок уведомления (полужирный шрифт). Если не нужен, то написать "null";<br>
@@ -26,7 +27,8 @@
 **Обратная связь**: r57zone[собака]gmail.com 
 
 <h2>EN:</h2>
-Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notification) for their applications. Compatible with [alternative center of notifications](https://github.com/r57zone/Notification-center).<br>
+Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notification) for their applications.<br>
+Compatible with [alternative center of notifications](https://github.com/r57zone/Notification-center).<br>
 
 **Startup parameters**<br>
 1) Headline Notification (bold). If you do not need, then write "null";<br>
