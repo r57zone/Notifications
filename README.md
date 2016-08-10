@@ -20,7 +20,7 @@
 **Уведомление только с правой иконкой**<br>
 ![4](https://cloud.githubusercontent.com/assets/9499881/8044982/61133a7a-0e41-11e5-94be-b1d80a1f2c52.png)<br>
 **Темы**<br>
-![](https://cloud.githubusercontent.com/assets/9499881/17571086/df1ee2aa-5f5f-11e6-8e22-807fae1237f7.png)<br>
+![](https://cloud.githubusercontent.com/assets/9499881/17571313/c4d142b6-5f60-11e6-953e-e4ae9891bc43.png)<br>
 
 **[Скачать последнюю версию](https://github.com/r57zone/notifications/releases)**
 
