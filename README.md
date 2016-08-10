@@ -1,7 +1,7 @@
 <h2>RU:</h2>
 Уведомления в стиле Windows 10, Windows 8.1, Windows 8 (Toast Notification) для своих приложений.<br>
 Совместимо с [альтернативным центром уведомлений](https://github.com/r57zone/Notification-center).<br>
-![](https://cloud.githubusercontent.com/assets/9499881/17571086/df1ee2aa-5f5f-11e6-8e22-807fae1237f7.png)<br>
+![1](https://cloud.githubusercontent.com/assets/9499881/8044777/01414cc8-0e40-11e5-8288-0b42f5a49e0a.png)<br>
 **Параметры запуска:**<br>
 1) Заголовок уведомления (полужирный шрифт). Если не нужен, то написать "null";<br>
 2) Первая строка. Если не нужна, то написать "null";<br>
@@ -20,7 +20,7 @@
 **Уведомление только с правой иконкой**<br>
 ![4](https://cloud.githubusercontent.com/assets/9499881/8044982/61133a7a-0e41-11e5-94be-b1d80a1f2c52.png)<br>
 **Темы**<br>
-![5](https://cloud.githubusercontent.com/assets/9499881/8045067/e21f3466-0e41-11e5-964a-eae0b4ac74e3.png)<br>
+![](https://cloud.githubusercontent.com/assets/9499881/17571086/df1ee2aa-5f5f-11e6-8e22-807fae1237f7.png)<br>
 
 **[Скачать последнюю версию](https://github.com/r57zone/notifications/releases)**
 
