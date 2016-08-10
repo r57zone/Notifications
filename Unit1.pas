@@ -7,7 +7,7 @@ https://github.com/r57zone/notifications}
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, MMSystem, jpeg, pngimage;
+  Dialogs, ExtCtrls, StdCtrls, MMSystem, Jpeg, PNGImage;
 
 type
   TForm1 = class(TForm)
@@ -91,7 +91,8 @@ begin
     3: Form1.Color:=RGB(0,138,0);   //Зеленый
     4: Form1.Color:=RGB(81,51,171); //Фиолетовый
     5: Form1.Color:=RGB(139,0,148); //Темно-розовый
-    6: Form1.Color:=RGB(34,34,34); //Черный
+    6: Form1.Color:=RGB(172,25,61); //Малиновый
+    7: Form1.Color:=RGB(34,34,34); //Черный
   end;
 
   WND:=FindWindow('TForm1', 'Notification center');
@@ -125,7 +126,8 @@ begin
     3: Canvas.Pen.Color:=RGB(48,158,48);
     4: Canvas.Pen.Color:=RGB(127,108,186);
     5: Canvas.Pen.Color:=RGB(159,47,166);
-    6: Canvas.Pen.Color:=RGB(75,75,75);
+    6:  Canvas.Pen.Color:=RGB(186,68,97);
+    7: Canvas.Pen.Color:=RGB(75,75,75);
   end;
   Canvas.Pen.Width:=2;
   Canvas.MoveTo(Width,1);
@@ -144,7 +146,7 @@ end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-//AW_SLIDE, AW_ACTIVATE, AW_BLEND, AW_HIDE, AW_CENTER, AW_HOR_POSITIVE, AW_HOR_NEGATIVE, AW_VER_POSITIVE, AW_VER_NEGATIVE
+  //AW_SLIDE, AW_ACTIVATE, AW_BLEND, AW_HIDE, AW_CENTER, AW_HOR_POSITIVE, AW_HOR_NEGATIVE, AW_VER_POSITIVE, AW_VER_NEGATIVE
   SetForegroundWindow(Application.Handle);
   AnimateWindow(Handle, 500, AW_BLEND);
   PlaySound(PChar(GetWindowsDir+'\Media\notify.wav'), 0, SND_ASYNC);
