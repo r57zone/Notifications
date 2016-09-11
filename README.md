@@ -15,7 +15,7 @@
 
 ##Параметры запуска
 **Пример:**<br>
->C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "Вышла новая серия" "Мотель Бейтса" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br><br>
+>C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "Вышла новая серия" "Мотель Бейтса" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br>
 
 **Ключи:**<br>
 >Notifications.exe 1 2 3 4 5 6<br>
