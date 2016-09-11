@@ -47,7 +47,7 @@ Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notifica
 
 ## Startup parameters
 **Example:**<br>
->C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "The new series of the show" "Bates Motel" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br>
+>C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "The new series" "Bates Motel" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br>
 
 **Keys:**<br>
 >Notifications.exe 1 2 3 4 5 6
