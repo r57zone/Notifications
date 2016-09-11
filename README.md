@@ -18,7 +18,8 @@
 >C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "Вышла новая серия" "Мотель Бейтса" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br>
 
 **Ключи:**<br>
->Notifications.exe 1 2 3 4 5 6<br>
+>Notifications.exe 1 2 3 4 5 6
+
 1. Заголовок уведомления (полужирный шрифт). Если не нужен, то написать "null";<br>
 2. Первая строка. Если не нужна, то написать "null";<br>
 3. Вторая строка. Если не нужна, то написать "null";<br>
@@ -49,7 +50,8 @@ Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notifica
 >C:\Program Files\Notifications\Notifications.exe" "LostFilm.TV" "The new series of the show" "Bates Motel" "Icons\icon90x90.png" "Icons\icon30x30.png" 2<br>
 
 **Keys:**<br>
->Notifications.exe 1 2 3 4 5 6<br>
+>Notifications.exe 1 2 3 4 5 6
+
 1. Headline Notification (bold). If you do not need, then write "null";<br>
 2. The first line. If you do not need, then write "null";<br>
 3. The second line. If you do not need, then write "null";<br>
