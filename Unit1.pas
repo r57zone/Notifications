@@ -66,7 +66,7 @@ begin
     Label3.Caption:=ParamStr(3);
 
   if (ParamStr(4)<>'') and (ParamStr(4)<>'null') then
-  if FileExists(ExtractFilePath(ParamStr(0))+'\Icons\'+ParamStr(4)) then
+  if FileExists(ExtractFilePath(ParamStr(0))+'Icons\'+ParamStr(4)) then
   if (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.png')
   or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.gif') then begin
     Image2.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(4));
@@ -76,7 +76,7 @@ begin
   end;
 
   if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
-  if FileExists(ExtractFilePath(ParamStr(0))+'\Icons\'+ParamStr(5)) then
+  if FileExists(ExtractFilePath(ParamStr(0))+'Icons\'+ParamStr(5)) then
   if (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.png')
   or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.gif') then
     Image1.Picture.LoadFromFile(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(5));
