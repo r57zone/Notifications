@@ -2,7 +2,7 @@ unit Unit1;
 
 interface
 
-{Notifications 0.3, последнее обновление 28.04.2016
+{Notifications 0.3.1, последнее обновление 14.05.2017
 https://github.com/r57zone/notifications}
 
 uses
@@ -66,23 +66,23 @@ begin
     Label3.Caption:=ParamStr(3);
 
   if (ParamStr(4)<>'') and (ParamStr(4)<>'null') then
-  if FileExists(ExtractFilePath(ParamStr(0))+'\'+ParamStr(4)) then
+  if FileExists(ExtractFilePath(ParamStr(0))+'\Icons\'+ParamStr(4)) then
   if (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.png')
   or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(4)))='.gif') then begin
-    Image2.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+ParamStr(4));
+    Image2.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(4));
     Label1.Left:=100;
     Label2.Left:=100;
     Label3.Left:=100;
   end;
 
   if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
-  if FileExists(ExtractFilePath(ParamStr(0))+'\'+ParamStr(5)) then
+  if FileExists(ExtractFilePath(ParamStr(0))+'\Icons\'+ParamStr(5)) then
   if (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.png')
   or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(5)))='.gif') then
-    Image1.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+ParamStr(5));
+    Image1.Picture.LoadFromFile(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(5));
 
   if ParamStr(6)<>'' then ThemeColor:=StrToInt(ParamStr(6));
-  SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
+    SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
 
   case ThemeColor of
     0: Form1.Color:=RGB(0,172,238); //Светло-синий
@@ -106,9 +106,9 @@ begin
     if (ParamStr(3)<>'') and (ParamStr(3)<>'null') then
       Command:=Command+'"'+ParamStr(3)+'" ' else Command:=Command+'"null" ';
     if (ParamStr(4)<>'') and (ParamStr(4)<>'null') then
-      Command:=Command+'"'+ExtractFilePath(ParamStr(0))+ParamStr(4)+'" ' else Command:=Command+'"null" ';
+      Command:=Command+'"'+ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(4)+'" ' else Command:=Command+'"null" ';
     if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
-      Command:=Command+'"'+ExtractFilePath(ParamStr(0))+ParamStr(5)+'" ' else Command:=Command+'"null" ';
+      Command:=Command+'"'+ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(5)+'" ' else Command:=Command+'"null" ';
     if (ParamStr(6)<>'') and (ParamStr(6)<>'null') then
       Command:=Command+'"'+ParamStr(6)+'" ' else Command:=Command+'"null"';
     CDS.cbData:=(length(Command)+ 1)*sizeof(char);
@@ -147,15 +147,15 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
   //AW_SLIDE, AW_ACTIVATE, AW_BLEND, AW_HIDE, AW_CENTER, AW_HOR_POSITIVE, AW_HOR_NEGATIVE, AW_VER_POSITIVE, AW_VER_NEGATIVE
-  SetForegroundWindow(Application.Handle);
+  //SetForegroundWindow(Application.Handle);
   AnimateWindow(Handle, 500, AW_BLEND);
-  PlaySound(PChar(GetWindowsDir+'\Media\notify.wav'), 0, SND_ASYNC);
+  PlaySound(PChar(GetWindowsDir + '\Media\notify.wav'), 0, SND_ASYNC);
   Timer1.Enabled:=True;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  AnimateWindow(handle, 500, AW_BLEND or AW_HIDE);
+  AnimateWindow(handle, 1000, AW_BLEND or AW_HIDE);
 end;
 
 procedure TForm1.Label1MouseDown(Sender: TObject; Button: TMouseButton;
