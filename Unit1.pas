@@ -95,23 +95,23 @@ begin
     7: Form1.Color:=RGB(34,34,34); //Черный
   end;
 
-  WND:=FindWindow('TForm1', 'Notification center');
+  WND:=FindWindow('TMain', 'Notification center');
   if WND<>0 then begin
     CDS.dwData:=0;
     Command:='NOTIFY ';
-    if (ParamStr(1)<>'') and (ParamStr(1)<>'null') then
-      Command:=Command+'"'+ParamStr(1)+'" ' else Command:=Command+'"null" ';
-    if (ParamStr(2)<>'') and (ParamStr(2)<>'null') then
-      Command:=Command+'"'+ParamStr(2)+'" ' else Command:=Command+'"null" ';
+    if (ParamStr(1) <> '') and (ParamStr(1) <> 'null') then
+      Command:=Command + '"' + ParamStr(1) + '" ' else Command:=Command + '"null" ';
+    if (ParamStr(2) <> '') and (ParamStr(2) <> 'null') then
+      Command:=Command + '"' + ParamStr(2) + '" ' else Command:=Command + '"null" ';
     if (ParamStr(3)<>'') and (ParamStr(3)<>'null') then
-      Command:=Command+'"'+ParamStr(3)+'" ' else Command:=Command+'"null" ';
-    if (ParamStr(4)<>'') and (ParamStr(4)<>'null') then
-      Command:=Command+'"'+ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(4)+'" ' else Command:=Command+'"null" ';
-    if (ParamStr(5)<>'') and (ParamStr(5)<>'null') then
-      Command:=Command+'"'+ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(5)+'" ' else Command:=Command+'"null" ';
-    if (ParamStr(6)<>'') and (ParamStr(6)<>'null') then
-      Command:=Command+'"'+ParamStr(6)+'" ' else Command:=Command+'"null"';
-    CDS.cbData:=(length(Command)+ 1)*sizeof(char);
+      Command:=Command + '"' + ParamStr(3) + '" ' else Command:=Command + '"null" ';
+    if (ParamStr(4) <> '') and (ParamStr(4) <> 'null') then
+      Command:=Command + '"' + ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(4) + '" ' else Command:=Command + '"null" ';
+    if (ParamStr(5) <> '') and (ParamStr(5) <> 'null') then
+      Command:=Command + '"'+ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(5) + '" ' else Command:=Command + '"null" ';
+    if (ParamStr(6) <> '') and (ParamStr(6) <> 'null') then
+      Command:=Command + '"' + ParamStr(6) +'" ' else Command:=Command + '"null"';
+    CDS.cbData:=(Length(Command) + 1) * SizeOf(Char);
     CDS.lpData:=PChar(Command);
     SendMessage(WND,WM_COPYDATA, Integer(Handle), Integer(@CDS));
   end;
@@ -138,10 +138,10 @@ end;
 
 function GetWindowsDir:string;
 var
-  name:array [0..255] of Char;
+  Name: array [0..255] of Char;
 begin
   GetWindowsDirectory(Name, SizeOf(Name));
-  Result:=name;
+  Result:=Name;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
