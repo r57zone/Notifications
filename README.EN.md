@@ -16,11 +16,11 @@ Notifications in the style of Windows 10, Windows 8.1, Windows 8 (Toast Notifica
 ## Startup parameters
 >Notifications.exe 1 2 3 4 5 6
 
-1. Headline Notification (bold). If you don't need, then write "null";<br>
-2. The first line. If you don't need, then write "null";<br>
-3. The second line. If you don't need, then write "null";<br>
-4. The file name icon on the left (90 by 90 pixels), put to folder "Icons" of application file format png, jpg, bmp or gif. If you don't need, then write "null";<br>
-5. The file name icon on the right (30 30 pixels), put to folder "Icons" of application file format png, jpg, bmp or gif. If you don't need, then write "null";<br>
+1. Notification title (bold). If you don't need then write "null";<br>
+2. First notification description line. If you don't need then write "null";<br>
+3. Second notification description line. If you don't need then write "null";<br>
+4. The file name of icon on the left (90 x 90 pixels), put to folder "Icons" of application file format png, jpg, bmp or gif. If you don't need then write "null";<br>
+5. The file name of icon on the right (30 x 30 pixels), put to folder "Icons" of application file format png, jpg, bmp or gif. If you don't need then write "null";<br>
 6. The color of threads in the figures from 0 to 6; Asking is not necessarily the default theme 0. Light blue - 0 Dark Blue - 1, Blue Green - 2, Green - 3, Purple - 4, Dark Pink - 5, Red - 6, Black - 7;<br>
 
 **Example:**<br>
