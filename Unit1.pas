@@ -2,12 +2,12 @@ unit Unit1;
 
 interface
 
-{Notifications 0.4, последнее обновление 09.04.2018
+{Notifications 0.6, последнее обновление 13.03.19
 https://github.com/r57zone/notifications}
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, MMSystem, Jpeg, PNGImage;
+  Dialogs, ExtCtrls, StdCtrls, MMSystem, Jpeg, PNGImage, Registry;
 
 type
   TMain = class(TForm)
@@ -41,6 +41,8 @@ type
 var
   Main: TMain;
   ThemeColor: integer;
+  NotNotifyCenter: bool; //Не отправлять сообщение в центр уведомлений, если пользовать нажал на его закрытие, то есть увидел его
+  BigIconPath, SmallIconPath, Desc: string;
 
 implementation
 
@@ -48,44 +50,69 @@ implementation
 
 procedure TMain.FormCreate(Sender: TObject);
 var
-  WND: HWND; Path, Command:string;
-  CDS: TCopyDataStruct;
+  Reg: TRegistry;
+  WND: HWND; Path: string;
+  i: integer;
 begin
   WND:=FindWindow('TMain', 'Notification Show');
   if WND <> 0 then
     while WND <> 0 do begin
-      sleep(100);
+      Sleep(100);
       WND:=FindWindow('TMain', 'Notification Show');
     end;
+
+  Reg:=TRegistry.Create;
+  Reg.RootKey:=HKEY_CURRENT_USER;
+  if Reg.OpenKey('\Software\r57zone\Notification', true) then begin
+      Reg.WriteString('Path', ParamStr(0));
+    Reg.CloseKey;
+  end;
+  Reg.Free;
 
   Caption:='Notification Show';
   Main.Left:=Screen.Width - Main.Width;
   Main.Top:=Screen.Height - Main.Height - 57;
   ThemeColor:=0;
 
-  if (ParamStr(1) <> '') and (ParamStr(1) <> 'null') then
-    TitleLbl.Caption:=ParamStr(1);
-  if (ParamStr(2) <> '') and (ParamStr(2) <> 'null') then
-    DescLbl.Caption:=ParamStr(2);
-  if (ParamStr(3) <> '') and (ParamStr(3) <> 'null') then
-    DescSubLbl.Caption:=ParamStr(3);
+  for i:=1 to ParamCount do begin
+    //Заголовок
+    if ParamStr(i) = '-t' then
+      TitleLbl.Caption:=ParamStr(i + 1);
 
-  if (ParamStr(4) <> '') and (ParamStr(4) <> 'null') and FileExists(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(4)) then
-    if (AnsiLowerCase(ExtractFileExt(ParamStr(4))) = '.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(4))) = '.png')
-    or (AnsiLowerCase(ExtractFileExt(ParamStr(4))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(4))) = '.gif') then begin
-      BigIcon.Picture.LoadFromFile(ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(4));
-      TitleLbl.Left:=100;
-      DescLbl.Left:=100;
-      DescSubLbl.Left:=100;
-    end;
+    //Описание
+    if ParamStr(i) = '-d' then begin
+      Desc:=ParamStr(i + 1);
+      if Pos('\n', Desc) > 0 then begin
+        DescLbl.Caption:=Copy(Desc, 1, Pos('\n', Desc) - 1);
+        DescSubLbl.Caption:=Copy(Desc, Pos('\n', Desc) + 2, Length(Desc));
+      end else
+        DescLbl.Caption:=Desc;
+      end;
 
-  if (ParamStr(5) <> '') and (ParamStr(5) <> 'null') and FileExists(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(5)) then
-    if (AnsiLowerCase(ExtractFileExt(ParamStr(5))) = '.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(5))) = '.png')
-    or (AnsiLowerCase(ExtractFileExt(ParamStr(5))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(5))) = '.gif') then
-      SmallIcon.Picture.LoadFromFile(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(5));
+    //Большое изображение
+    if (ParamStr(i) = '-b') and FileExists(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1)) then
+      if (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.png') or
+         (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.gif') then
+        begin
+          BigIconPath:=ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1);
+          BigIcon.Picture.LoadFromFile(BigIconPath);
+          TitleLbl.Left:=100;
+          DescLbl.Left:=100;
+          DescSubLbl.Left:=100;
+        end;
 
-  if ParamStr(6) <> '' then ThemeColor:=StrToInt(ParamStr(6));
-    SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
+    //Маленькое изображение
+    if (ParamStr(i) = '-s') and FileExists(ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1)) then
+      if (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.png') or
+         (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.gif') then begin
+        SmallIconPath:=ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1);
+        SmallIcon.Picture.LoadFromFile(SmallIconPath);
+      end;
+
+    //Цвет
+    if ParamStr(i) = '-c' then
+      ThemeColor:=StrToInt(ParamStr(i + 1));
+  end;
 
   case ThemeColor of
     0: Main.Color:=RGB(0,172,238); //Светло-синий
@@ -98,37 +125,12 @@ begin
     7: Main.Color:=RGB(34,34,34); //Черный
   end;
 
-  WND:=FindWindow('TMain', 'Notification center');
-  if WND <> 0 then begin
-    CDS.dwData:=0;
-    Command:='NOTIFY ';
-    if (ParamStr(1) <> '') and (ParamStr(1) <> 'null') then
-      Command:=Command + '"' + ParamStr(1) + '" ' else Command:=Command + '"null" ';
-
-    if (ParamStr(2) <> '') and (ParamStr(2) <> 'null') then
-      Command:=Command + '"' + ParamStr(2) + '" ' else Command:=Command + '"null" ';
-
-    if (ParamStr(3)<>'') and (ParamStr(3)<>'null') then
-      Command:=Command + '"' + ParamStr(3) + '" ' else Command:=Command + '"null" ';
-
-    if (ParamStr(4) <> '') and (ParamStr(4) <> 'null') then
-      Command:=Command + '"' + ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(4) + '" ' else Command:=Command + '"null" ';
-
-    if (ParamStr(5) <> '') and (ParamStr(5) <> 'null') then
-      Command:=Command + '"' + ExtractFilePath(ParamStr(0))+ 'Icons\' + ParamStr(5) + '" ' else Command:=Command + '"null" ';
-
-    if (ParamStr(6) <> '') and (ParamStr(6) <> 'null') then
-      Command:=Command + '"' + ParamStr(6) +'" ' else Command:=Command + '"null"';
-
-    CDS.cbData:=(Length(Command) + 1) * SizeOf(Char);
-    CDS.lpData:=PChar(Command);
-    SendMessage(WND, WM_COPYDATA, Integer(Handle), Integer(@CDS));
-  end;
+  SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
 end;
 
 procedure TMain.FormPaint(Sender: TObject);
 begin
-  case ThemeColor of
+  case ThemeColor of //Чуть более светлые цвета для рамки
     0: Canvas.Pen.Color:=RGB(48,186,238);
     1: Canvas.Pen.Color:=RGB(76,122,152);
     2: Canvas.Pen.Color:=RGB(37,148,168);
@@ -137,11 +139,11 @@ begin
     5: Canvas.Pen.Color:=RGB(159,47,166);
     6: Canvas.Pen.Color:=RGB(186,68,97);
     7: Canvas.Pen.Color:=RGB(75,75,75);
-  end;
+end;
   Canvas.Pen.Width:=2;
   Canvas.MoveTo(Width, 1);
   Canvas.LineTo(0, 1);
-  Canvas.LineTo(1, Height  -1);
+  Canvas.LineTo(1, Height - 1);
   Canvas.LineTo(Width, Height - 1);
 end;
 
@@ -163,25 +165,55 @@ begin
 end;
 
 procedure TMain.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  WND: HWND; Command: string;
+  CDS: TCopyDataStruct;
 begin
-  AnimateWindow(handle, 1000, AW_BLEND or AW_HIDE);
+  if NotNotifyCenter = false then begin
+    WND:=FindWindow('TMain', 'Notification center');
+    if WND <> 0 then begin
+      CDS.dwData:=0;
+      Command:='{NOTIFY}' + #13#10;
+      if (TitleLbl.Caption <> '') then
+        Command:=Command + '-t' + #9 + TitleLbl.Caption + #9;
+
+      if (Desc <> '') then
+        Command:=Command + '-d' + #9 + Desc + #9;
+
+      if (BigIconPath <> '') then
+        Command:=Command + '-b' + #9 + BigIconPath + #9;
+
+      if (SmallIconPath <> '') then
+        Command:=Command + '-s' + #9 + SmallIconPath + #9;
+
+      Command:=Command + '-c' + #9 + IntToStr(ThemeColor);
+
+      CDS.cbData:=(Length(Command) + 1) * SizeOf(Char);
+      CDS.lpData:=PChar(Command);
+      SendMessage(WND, WM_COPYDATA, Integer(Handle), Integer(@CDS));
+    end;
+  end;
+  AnimateWindow(Handle, 1000, AW_BLEND or AW_HIDE);
 end;
 
 procedure TMain.DescLblMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  NotNotifyCenter:=true;
   Close;
 end;
 
 procedure TMain.DescSubLblMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  NotNotifyCenter:=true;
   Close;
 end;
 
 procedure TMain.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  NotNotifyCenter:=true;
   Close;
 end;
 
@@ -193,12 +225,14 @@ end;
 procedure TMain.BigIconMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  NotNotifyCenter:=true;
   Close;
 end;
 
 procedure TMain.TitleLblMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  NotNotifyCenter:=true;
   Close;
 end;
 

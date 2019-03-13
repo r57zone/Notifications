@@ -22,13 +22,13 @@ object Main: TMain
   TextHeight = 13
   object TitleLbl: TLabel
     Left = 35
-    Top = 15
+    Top = 14
     Width = 4
-    Height = 20
+    Height = 21
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWhite
-    Font.Height = -15
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
     OnMouseDown = TitleLblMouseDown
@@ -60,7 +60,7 @@ object Main: TMain
     OnMouseDown = DescSubLblMouseDown
   end
   object SmallIcon: TImage
-    Left = 335
+    Left = 338
     Top = 50
     Width = 30
     Height = 30
@@ -78,7 +78,7 @@ object Main: TMain
     Enabled = False
     Interval = 3000
     OnTimer = WaitAndCloseTimer
-    Left = 336
+    Left = 8
     Top = 8
   end
 end
