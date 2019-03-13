@@ -4,23 +4,19 @@
 Уведомления в стиле Windows 10, Windows 8 (Toast Notification) для своих приложений. Совместимо с [альтернативным центром уведомлений](https://github.com/r57zone/Notification-center).
 
 ## Скриншоты
-![](https://cloud.githubusercontent.com/assets/9499881/17830407/63166c72-66db-11e6-9665-eaae5361cb34.png)
+![](https://user-images.githubusercontent.com/9499881/54310227-52c84b00-45eb-11e9-8728-368df6777faa.png)
 
 
 **Уведомление без иконок**
-
 ![](https://cloud.githubusercontent.com/assets/9499881/8045036/ab2760c8-0e41-11e5-8cee-f70560396b72.png)
 
 **Уведомление только с левой иконкой**
-
 ![](https://cloud.githubusercontent.com/assets/9499881/8045046/c59390da-0e41-11e5-9b6b-348e84d29430.png)
 
 **Уведомление только с правой иконкой**
-
 ![](https://cloud.githubusercontent.com/assets/9499881/8044982/61133a7a-0e41-11e5-94be-b1d80a1f2c52.png)
 
 **Темы**
-
 ![](https://cloud.githubusercontent.com/assets/9499881/17571313/c4d142b6-5f60-11e6-953e-e4ae9891bc43.png)
 
 
