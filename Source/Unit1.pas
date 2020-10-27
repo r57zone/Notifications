@@ -2,7 +2,7 @@ unit Unit1;
 
 interface
 
-{Notifications 0.6, последнее обновление 13.03.19
+{Notifications 0.6.1, последнее обновление 27.10.20
 https://github.com/r57zone/notifications}
 
 uses
@@ -112,6 +112,10 @@ begin
     //÷вет
     if ParamStr(i) = '-c' then
       ThemeColor:=StrToInt(ParamStr(i + 1));
+
+    // ол-во миллисекунд до закрыти€
+    if ParamStr(i) = '-ms' then
+      WaitAndClose.Interval:=StrToIntDef(ParamStr(i + 1), 3000);
   end;
 
   case ThemeColor of

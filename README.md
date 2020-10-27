@@ -20,8 +20,11 @@ Notifications in the style of Windows 10, Windows 8 (Toast Notification) for the
 The size of the large icon on the left is 90 x 90 pixels, the size of a small 30 x 30 pixels. The image needs to be added to the "Icons" folder.<br><br>
 The theme color in numbers, from 0 to 7; The default is theme 0. Light blue - 0, Dark blue - 1, Blue-green - 2, Green - 3, Violet - 4, Dark pink - 5, Red - 6, Black - 7;
 
+
+
+Can also increase the notification time by adding the launch parameter `-ms 5000`, where 5000 is the number of milliseconds before the notification closes.
 ## Download
->Version for Windows XP, Windows 7, Windows 8.1, Windows 10.
+>Version for Windows XP, 7, 8.1, 10.
 
 **[Download](https://github.com/r57zone/notifications/releases)**
 
