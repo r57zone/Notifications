@@ -22,6 +22,10 @@ The theme color in numbers, from 0 to 7; The default is theme 0. Light blue - 0,
 
 
 
+Can turn off the notification sound by adding the launch parameter `-ds`.
+
+
+
 Can also increase the notification time by adding the launch parameter `-ms 5000`, where 5000 is the number of milliseconds before the notification closes.
 ## Download
 >Version for Windows XP, 7, 8.1, 10.

@@ -2,7 +2,7 @@ unit Unit1;
 
 interface
 
-{Notifications 0.6.1, последнее обновление 27.10.20
+{Notifications 0.6.2, последнее обновление 04.03.21
 https://github.com/r57zone/notifications}
 
 uses
@@ -43,6 +43,7 @@ var
   ThemeColor: integer;
   NotNotifyCenter: bool; //Ќе отправл€ть сообщение в центр уведомлений, если пользовать нажал на его закрытие, то есть увидел его
   BigIconPath, SmallIconPath, Desc: string;
+  SilentMode: boolean;
 
 implementation
 
@@ -116,6 +117,10 @@ begin
     // ол-во миллисекунд до закрыти€
     if ParamStr(i) = '-ms' then
       WaitAndClose.Interval:=StrToIntDef(ParamStr(i + 1), 3000);
+
+    //–ежим без звука
+    if ParamStr(i) = '-ds' then
+      SilentMode:=true;
   end;
 
   case ThemeColor of
@@ -164,7 +169,8 @@ begin
   //AW_SLIDE, AW_ACTIVATE, AW_BLEND, AW_HIDE, AW_CENTER, AW_HOR_POSITIVE, AW_HOR_NEGATIVE, AW_VER_POSITIVE, AW_VER_NEGATIVE
   //SetForegroundWindow(Application.Handle);
   AnimateWindow(Handle, 500, AW_BLEND);
-  PlaySound(PChar(GetWindowsDir + '\Media\notify.wav'), 0, SND_ASYNC);
+  if SilentMode = false then
+    PlaySound(PChar(GetWindowsDir + '\Media\notify.wav'), 0, SND_ASYNC);
   WaitAndClose.Enabled:=True;
 end;
 
