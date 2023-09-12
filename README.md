@@ -1,5 +1,7 @@
 [![EN](https://user-images.githubusercontent.com/9499881/33184537-7be87e86-d096-11e7-89bb-f3286f752bc6.png)](https://github.com/r57zone/Notifications/)
 [![RU](https://user-images.githubusercontent.com/9499881/27683795-5b0fbac6-5cd8-11e7-929c-057833e01fb1.png)](https://github.com/r57zone/Notifications/blob/master/README.RU.md) 
+← Choose language | Выберите язык
+
 # Notifications
 Notifications in the style of Windows 10, Windows 8 (Toast Notification) for their applications. Compatible with [alternative center of notifications](https://github.com/r57zone/Notification-center).
 
