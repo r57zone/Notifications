@@ -6,7 +6,7 @@
 Notifications in the style of Windows 8 (Toast Notification) and Windows 10 for their applications. Compatible with [alternative center of notifications](https://github.com/r57zone/Notification-center).
 
 ## Screenshots
-![](https://user-images.githubusercontent.com/9499881/54310409-c23e3a80-45eb-11e9-9a22-bfe1e3ef9707.png)<br>
+![](https://github.com/r57zone/Notifications/assets/9499881/1c239d17-5038-4393-9456-8b1cbf1d579a)<br>
 **Notice without icons**<br>
 ![](https://github.com/r57zone/Notifications/assets/9499881/a5fa8435-de9b-4de6-bdbb-632ca709f258)<br>
 **Notice only the left icon**<br>
