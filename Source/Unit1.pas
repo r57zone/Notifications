@@ -41,13 +41,21 @@ type
 var
   Main: TMain;
   ThemeColor: integer;
-  NotNotifyCenter: bool; //Не отправлять сообщение в центр уведомлений, если пользовать нажал на его закрытие, то есть увидел его
-  BigIconPath, SmallIconPath, Desc: string;
+  NotNotifyCenter: boolean; // Не отправлять сообщение в центр уведомлений, если пользовать нажал на его закрытие, то есть увидел его
+  BigIconPath, SmallIconPath, NotificationTitle, Desc: string;
   SilentMode: boolean;
 
 implementation
 
 {$R *.dfm}
+
+function CutStr(Str: string; CharCount: integer): string;
+begin
+  if Length(Str) > CharCount then
+    Result:=Copy(Str, 1, CharCount - 3) + '...'
+  else
+    Result:=Str;
+end;
 
 procedure TMain.FormCreate(Sender: TObject);
 var
@@ -78,7 +86,7 @@ begin
   for i:=1 to ParamCount do begin
     //Заголовок
     if ParamStr(i) = '-t' then
-      TitleLbl.Caption:=ParamStr(i + 1);
+      NotificationTitle:=ParamStr(i + 1);
 
     //Описание
     if ParamStr(i) = '-d' then begin
@@ -96,6 +104,7 @@ begin
          (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.gif') then
         begin
           BigIconPath:=ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1);
+          BigIcon.Visible:=true;
           BigIcon.Picture.LoadFromFile(BigIconPath);
           TitleLbl.Left:=100;
           DescLbl.Left:=100;
@@ -107,6 +116,7 @@ begin
       if (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.jpg') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.png') or
          (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.bmp') or (AnsiLowerCase(ExtractFileExt(ParamStr(i + 1))) = '.gif') then begin
         SmallIconPath:=ExtractFilePath(ParamStr(0)) + 'Icons\' + ParamStr(i + 1);
+        SmallIcon.Visible:=true;
         SmallIcon.Picture.LoadFromFile(SmallIconPath);
       end;
 
@@ -123,15 +133,39 @@ begin
       SilentMode:=true;
   end;
 
+  if (BigIcon.Visible) and (SmallIcon.Visible) then begin // Если оба показаны
+    TitleLbl.Caption:=CutStr(NotificationTitle, 24);
+    DescLbl.Caption:=CutStr(DescLbl.Caption, 27);
+    DescSubLbl.Caption:=CutStr(DescSubLbl.Caption, 27);
+  end else if (BigIcon.Visible) then begin // Если показана только большая иконка
+    TitleLbl.Caption:=CutStr(NotificationTitle, 27);
+    DescLbl.Caption:=CutStr(DescLbl.Caption, 31);
+    DescSubLbl.Caption:=CutStr(DescSubLbl.Caption, 31);
+  end else if (SmallIcon.Visible) then begin // Если показана только маленькая иконка
+    TitleLbl.Caption:=CutStr(NotificationTitle, 31);
+    DescLbl.Caption:=CutStr(DescLbl.Caption, 35);
+    DescSubLbl.Caption:=CutStr(DescSubLbl.Caption, 35);
+  end else begin // Если нет иконок
+    TitleLbl.Caption:=CutStr(NotificationTitle, 33);
+    DescLbl.Caption:=CutStr(DescLbl.Caption, 38);
+    DescSubLbl.Caption:=CutStr(DescSubLbl.Caption, 38);
+  end;
+
+  if NotificationTitle = '' then begin
+    TitleLbl.Caption:='Notification';
+    DescLbl.Caption:='Add launch options for title, description && icons.';
+    DescSubLbl.Caption:='For more details, please read the ReadMe.txt.';
+  end;
+
   case ThemeColor of
-    0: Main.Color:=RGB(0,172,238); //Светло-синий
-    1: Main.Color:=RGB(35,93,130); //Темно-синий
-    2: Main.Color:=RGB(1,131,153); //Сине-зеленый
-    3: Main.Color:=RGB(0,138,0);   //Зеленый
-    4: Main.Color:=RGB(81,51,171); //Фиолетовый
-    5: Main.Color:=RGB(139,0,148); //Темно-розовый
-    6: Main.Color:=RGB(172,25,61); //Малиновый
-    7: Main.Color:=RGB(34,34,34); //Черный
+    0: Main.Color:=rgb(53, 145, 206); // Светло-синий
+    1: Main.Color:=RGB(35, 93, 130);  // Темно-синий
+    2: Main.Color:=RGB(1, 131, 153);  // Сине-зеленый
+    3: Main.Color:=RGB(0, 138, 0);    // Зелёный
+    4: Main.Color:=RGB(81, 51, 171);  // Фиолетовый
+    5: Main.Color:=rgb(142, 68, 173); // Темно-розовый
+    6: Main.Color:=rgb(192, 57, 43);  // Красный
+    7: Main.Color:=rgb(44, 62, 80);   // Чёрный
   end;
 
   SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
@@ -139,16 +173,16 @@ end;
 
 procedure TMain.FormPaint(Sender: TObject);
 begin
-  case ThemeColor of //Чуть более светлые цвета для рамки
-    0: Canvas.Pen.Color:=RGB(48,186,238);
-    1: Canvas.Pen.Color:=RGB(76,122,152);
-    2: Canvas.Pen.Color:=RGB(37,148,168);
-    3: Canvas.Pen.Color:=RGB(48,158,48);
-    4: Canvas.Pen.Color:=RGB(127,108,186);
-    5: Canvas.Pen.Color:=RGB(159,47,166);
-    6: Canvas.Pen.Color:=RGB(186,68,97);
-    7: Canvas.Pen.Color:=RGB(75,75,75);
-end;
+  case ThemeColor of // Чуть более светлые цвета для рамки
+    0: Canvas.Pen.Color:=RGB(58, 158, 224);  // Светло-синий
+    1: Canvas.Pen.Color:=RGB(76, 122, 152);  // Темно-синий
+    2: Canvas.Pen.Color:=RGB(37, 148, 168);  // Сине-зеленый
+    3: Canvas.Pen.Color:=RGB(48, 158, 48);   // Зелёный
+    4: Canvas.Pen.Color:=RGB(127, 108, 186); // Фиолетовый
+    5: Canvas.Pen.Color:=RGB(155, 89, 182);  // Темно-розовый
+    6: Canvas.Pen.Color:=RGB(231, 76, 60);   // Красный
+    7: Canvas.Pen.Color:=RGB(52, 73, 94);    // Чёрный
+  end;
   Canvas.Pen.Width:=2;
   Canvas.MoveTo(Width, 1);
   Canvas.LineTo(0, 1);
@@ -185,7 +219,7 @@ begin
       CDS.dwData:=0;
       Command:='{NOTIFY}' + #13#10;
       if (TitleLbl.Caption <> '') then
-        Command:=Command + '-t' + #9 + TitleLbl.Caption + #9;
+        Command:=Command + '-t' + #9 + NotificationTitle + #9;
 
       if (Desc <> '') then
         Command:=Command + '-d' + #9 + Desc + #9;

@@ -65,6 +65,7 @@ object Main: TMain
     Width = 30
     Height = 30
     Center = True
+    Visible = False
   end
   object BigIcon: TImage
     Left = 0
@@ -72,6 +73,7 @@ object Main: TMain
     Width = 90
     Height = 90
     Center = True
+    Visible = False
     OnMouseDown = BigIconMouseDown
   end
   object WaitAndClose: TTimer
