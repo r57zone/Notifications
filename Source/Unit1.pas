@@ -153,20 +153,20 @@ begin
 
   if NotificationTitle = '' then begin
     NotificationTitle:='Notification';
-    TitleLbl.Caption:='Notification';
+    TitleLbl.Caption:=NotificationTitle;
     DescLbl.Caption:='Add launch options for title, description && icons.';
     DescSubLbl.Caption:='For more details, please read the ReadMe.txt.';
   end;
 
   case ThemeColor of
-    0: Main.Color:=rgb(53, 145, 206); // Светло-синий
+    0: Main.Color:=RGB(53, 145, 206); // Светло-синий
     1: Main.Color:=RGB(35, 93, 130);  // Темно-синий
     2: Main.Color:=RGB(1, 131, 153);  // Сине-зеленый
     3: Main.Color:=RGB(0, 138, 0);    // Зелёный
     4: Main.Color:=RGB(81, 51, 171);  // Фиолетовый
-    5: Main.Color:=rgb(142, 68, 173); // Темно-розовый
-    6: Main.Color:=rgb(192, 57, 43);  // Красный
-    7: Main.Color:=rgb(44, 62, 80);   // Чёрный
+    5: Main.Color:=RGB(142, 68, 173); // Темно-розовый
+    6: Main.Color:=RGB(192, 57, 43);  // Красный
+    7: Main.Color:=RGB(44, 62, 80);   // Чёрный
   end;
 
   SetWindowLong(Application.Handle, GWL_EXSTYLE,GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
