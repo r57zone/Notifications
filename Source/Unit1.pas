@@ -152,6 +152,7 @@ begin
   end;
 
   if NotificationTitle = '' then begin
+    NotificationTitle:='Notification';
     TitleLbl.Caption:='Notification';
     DescLbl.Caption:='Add launch options for title, description && icons.';
     DescSubLbl.Caption:='For more details, please read the ReadMe.txt.';
